@@ -10,11 +10,6 @@ const burger = {
   name: "Burger",
   price: 18,
   category: "Lunch",
-  discount: function (name) {
-    if (name === "teacher" || name === "student") {
-      return "13.5";
-    } else if (name === "public") return "16.2";
-  },
 };
 
 const breakfastBurrito = {
@@ -25,13 +20,14 @@ const breakfastBurrito = {
 
 /* Task 1a: write a function to return more menu items with the same format as the items above. */
 
-function createMenuItem(name, cost, category) {
-  let newItem = {
-    name: name,
-    price: cost,
-    category: category,
-  };
-  return newItem;
+function createMenuItem(name, price, category) {
+  // let newItem = {
+  //   name: name,
+  //   price: price,
+  //   category: category,
+  // };
+  // return newItem;
+  return { name, price, category };
 }
 console.log(createMenuItem("Coffee", 3, "Drink"));
 
@@ -51,7 +47,14 @@ and should return a number.
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
-console.log(burger.discount("teacher"));
+(burger.discount = function (name) {
+  if (name === "teacher" || name === "student") {
+    return this.price * 0.75;
+  } else {
+    return this.price * 0.9;
+  }
+}),
+  console.log(burger.discount("teacher"));
 console.log(burger.discount("student"));
 console.log(burger.discount("public"));
 
@@ -99,9 +102,27 @@ const reviews = [
 
 /* Task 3: Console.log just Julius' feedback */
 
+console.log(reviews[5].feedback);
+
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
 
-/* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+// function newRating(name, rating, feedback) {
+//   return { name, rating, feedback };
+// }
+// console.log(newRating("Monika", 10, "Great food and fast service"));
+
+const cloneArray = [...reviews];
+cloneArray.push({ name: "Monika", rating: 10, feedback: "Great Service" });
+
+console.log(cloneArray);
+
+// /* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+
+const addedReview = [...reviews];
+console.log(
+  (addedReview[7].feedback =
+    "this place is chill with really cool people, great for getting work done on weekdays")
+);
 
 /*  Task 6: Write a function to return a review based on the index of the review in the array.
 
