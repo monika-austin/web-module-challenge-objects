@@ -119,10 +119,9 @@ console.log(cloneArray);
 // /* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
 
 const addedReview = [...reviews];
-console.log(
-  (addedReview[7].feedback =
-    "this place is chill with really cool people, great for getting work done on weekdays")
-);
+addedReview[7].feedback =
+  "this place is chill with really cool people, great for getting work done on weekdays";
+console.log(addedReview);
 
 /*  Task 6: Write a function to return a review based on the index of the review in the array.
 
@@ -137,8 +136,12 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
 function getReviewByIndex(reviews, index) {
-  /* code here */
+  const clonedArr = [...reviews];
+  const source = clonedArr[index];
+  return `${source.name} gave the restaurant a ${source.rating}, and their feedback was: ${source.feedback}`;
 }
+
+console.log(getReviewByIndex(reviews, 2));
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
 
@@ -149,10 +152,12 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
-  /* code here */
+function getLastReview(reviews) {
+  const clonedArr = [...reviews];
+  const source = clonedArr[clonedArr.length - 1];
+  return `${source.name} gave the restaurant a ${source.rating}, and their feedback was: ${source.feedback}`;
 }
-
+console.log(getLastReview(reviews));
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
 /** STRETCH 1: Write a function called `getReviewByRating` that returns an array containing all reviews in a certain range. Your function should accept: 
